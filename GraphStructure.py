@@ -57,4 +57,3 @@ class Graph:
                                      for neighbor in self.edges[node]])
             graph_str += f"{node.name} -> {connections}\n"
         return graph_str
-

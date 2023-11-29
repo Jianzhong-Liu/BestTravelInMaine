@@ -5,8 +5,8 @@ import random
 
 
 class NodeData:
-    # Simple Test Case
-    simple_locations = {
+
+    simple_circuit_locations = {
         "A": (1, 2),
         "B": (2, 3),
         "C": (3, 4),
@@ -14,12 +14,14 @@ class NodeData:
         "E": (10, 3),
     }
 
-    simple_edges = [
+    simple_circuit_edges = [
         ("A", "B"),
         ("B", "C"),
         ("D", "E"),
         ("A", "E"),
-        ("C", "E")
+        ("C", "D"),
+        ("C", "E"),
+        ("B", "E")
     ]
 
     main_city_locations = {
@@ -41,9 +43,11 @@ class NodeData:
         ("Bangor", "Augusta"),
         ("Bangor", "Bar Harbor"),
         ("Augusta", "Bangor"),
-        ("Bar Harbor", "Rockland"),
         ("Bar Harbor", "Acadia National Park"),
-        ("Lewiston", "Rockland")
+        ("Rockland", "Acadia National Park"),
+        ("Lewiston", "Rockland"),
+        ("Kennebunkport", "Rockland"),
+        ("Kennebunkport", "Lewiston")
     ]
 
     # Generate random nodes
@@ -64,8 +68,8 @@ class NodeData:
 
 class GraphData:
     main_city_graph = Graph(NodeData.main_city_locations, NodeData.main_city_edges)
-    simple_graph = Graph(NodeData.simple_locations, NodeData.simple_edges)
     random_graph = Graph(NodeData.random_locations, NodeData.random_edges)
+    simple_circuit_graph = Graph(NodeData.simple_circuit_locations, NodeData.simple_circuit_edges)
 
 
 '''
@@ -96,7 +100,6 @@ def print_visualized_graph(graph, title="Graph"):
 
 
 # Print Graph Data in the GraphData class
-print(GraphData.main_city_graph)
 print_visualized_graph(GraphData.main_city_graph, "City graph")
-print_visualized_graph(GraphData.simple_graph, "Simple Graph")
 print_visualized_graph(GraphData.random_graph, "Random Graph")
+print_visualized_graph(GraphData.simple_circuit_graph, "Simple Circuit Graph")
