@@ -70,6 +70,7 @@ def print_solution(g: Graph, path: list[str]):
         pre_node = g.nodes[vertex]
         print(vertex,  end=" -> ")
     print(path[0])
+    total_distance += g.get_distance(pre_node, g.nodes[path[0]])
     print("Total Distance is", total_distance, "\n")
 
 
@@ -81,6 +82,7 @@ def hamiltonian_circuit(g: Graph, start_city: str) -> bool:
     if not ham_cycle_util(g, path, start_city, start_city):
         print("Solution doesn't not exist\n")
         return False
+
     print_solution(g, path)
     return True
 
