@@ -1,5 +1,6 @@
 from GraphStructure import Graph, Node
 from TestData import GraphData
+import time
 
 '''
     Check if this vertex is an adjacent vertex 
@@ -59,41 +60,74 @@ def ham_cycle_util(g: Graph, path: list[str], cur_city: str, start_city: str) ->
 A method that can print the Path
 and calculate the total Distance 
 '''
+
+
 def print_solution(g: Graph, path: list[str]):
-    print("Solution Exists: Following", "is one Hamiltonian Cycle")
+    edge_number = 0
+
+    for edge_list in g.edges.values():
+        edge_number += len(edge_list)
+
+    print("Solution Exists: Following is the valid traveling route for the number of", len(g.nodes), "nodes and",
+          edge_number, "edges")
 
     total_distance = 0
     pre_node = None
-    for vertex in path:
+    path_str = ""
+
+    for i, vertex in enumerate(path):
         if pre_node:
             total_distance += g.get_distance(pre_node, g.nodes[vertex])
         pre_node = g.nodes[vertex]
-        print(vertex,  end=" -> ")
-    print(path[0])
-    total_distance += g.get_distance(pre_node, g.nodes[path[0]])
-    print("Total Distance is", total_distance, "\n")
+
+        # Add city to path string, avoid adding arrow after last city
+        if i < len(path) - 1:
+            path_str += vertex + " -> "
+        else:
+            path_str += vertex
+
+    print(path_str)
+    print("Total Distance is", total_distance)
 
 
-# main method to call the recursive utility function
-def hamiltonian_circuit(g: Graph, start_city: str) -> bool:
+def hamiltonian_circuit_timed(g: Graph, start_city: str) -> bool:
+    start_time = time.time()  # Capture the start time
+    print("Hamiltonian circuit algo is running...")
 
     path = [start_city]
 
     if not ham_cycle_util(g, path, start_city, start_city):
-        print("Solution doesn't not exist\n")
+        print("Solution doesn't exist\n")
+        end_time = time.time()  # Capture the end time
+        print(f"Elapsed Time: {end_time - start_time:.4f} seconds\n")
         return False
-
+    path.append(path[0])
     print_solution(g, path)
+
+    end_time = time.time()  # Capture the end time
+    print(f"Elapsed Time: {end_time - start_time:.4f} seconds\n")
     return True
 
 
 # Example usage:
 graph = GraphData.simple_circuit_graph
-res = hamiltonian_circuit(graph, "A")
+res = hamiltonian_circuit_timed(graph, "A")
 
 city_graph = GraphData.main_city_graph
-city_res = hamiltonian_circuit(city_graph, "Portland")
+city_res = hamiltonian_circuit_timed(city_graph, "Portland")
 
 random_graph = GraphData.random_graph
-random_res = hamiltonian_circuit(random_graph, "A")
+random_res = hamiltonian_circuit_timed(random_graph, "A")
+
+more_graph = GraphData.more_city_graph
+more_graph_res = hamiltonian_circuit_timed(more_graph, "Portland")
+
+g = GraphData.rectangle_circuit_graph
+hamiltonian_circuit_timed(g, "A")
+
+more_city_graph = GraphData.more_city_graph
+hamiltonian_circuit_timed(more_city_graph, "Portland")
+
+
+
 
