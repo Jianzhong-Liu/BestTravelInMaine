@@ -63,7 +63,13 @@ and calculate the total Distance
 
 
 def print_solution(g: Graph, path: list[str]):
-    print("Solution Exists: Following is the valid traveling route")
+    edge_number = 0
+
+    for edge_list in g.edges.values():
+        edge_number += len(edge_list)
+
+    print("Solution Exists: Following is the valid traveling route for the number of", len(g.nodes), "nodes and",
+          edge_number, "edges")
 
     total_distance = 0
     pre_node = None
@@ -118,6 +124,9 @@ more_graph_res = hamiltonian_circuit_timed(more_graph, "Portland")
 
 g = GraphData.rectangle_circuit_graph
 hamiltonian_circuit_timed(g, "A")
+
+more_city_graph = GraphData.more_city_graph
+hamiltonian_circuit_timed(more_city_graph, "Portland")
 
 
 

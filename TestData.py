@@ -65,31 +65,6 @@ class NodeData:
         "Ellsworth": (44.5434, -68.4195)  # Ellsworth, ME
     }
 
-    rectangle_circuit_locations = {
-        "A": (0, 0),
-        "B": (1, 0),
-        "C": (2, 0),
-        "D": (0, 1),
-        "E": (1, 1),
-        "F": (2, 1),
-    }
-
-    rectangle_circuit_edges = {
-        ("A", "B"),
-        ("A", "D"),
-        ("A", "F"),
-        ("A", "E"),
-        ("B", "C"),
-        ("B", "E"),
-        ("B", "D"),
-        ("B", "F"),
-        ("C", "F"),
-        ("C", "D"),
-        ("C", "E"),
-        ("F", "E"),
-        ("E", "D"),
-    }
-
     # Updated connections (edges) to make the graph more connected and likely to form a circuit
     more_city_edges = [
         ("Portland", "Augusta"),
@@ -123,6 +98,50 @@ class NodeData:
         ("Biddeford", "Kennebunkport")
     ]
 
+    alphabet_length = 26  # There are 26 letters in the alphabet
+    for i in range(200):
+        # Cycle through the alphabet using modulo operation
+        key = chr(65 + (i % alphabet_length))
+        # Append a number to differentiate keys if the alphabet cycles more than once
+        if i >= alphabet_length:
+            key += str(i // alphabet_length)
+        latitude = random.uniform(43, 47.5)  # Y position
+        longitude = random.uniform(-71, -66.5)  # X position
+        more_city_locations[key] = (longitude, latitude)
+
+    keys = list(more_city_locations.keys())  # Get a list of all the keys in the dictionary
+
+    for i in range(len(keys)):
+        for j in range(i + 1, len(keys)):  # Iterate over other keys, avoiding self-connection
+            if random.random() < 0.7:  # 70% chance to create an edge
+                edge = (keys[i], keys[j])
+                more_city_edges.append(edge)
+
+    rectangle_circuit_locations = {
+        "A": (0, 0),
+        "B": (1, 0),
+        "C": (2, 0),
+        "D": (0, 1),
+        "E": (1, 1),
+        "F": (2, 1),
+    }
+
+    rectangle_circuit_edges = {
+        ("A", "B"),
+        ("A", "D"),
+        ("A", "F"),
+        ("A", "E"),
+        ("B", "C"),
+        ("B", "E"),
+        ("B", "D"),
+        ("B", "F"),
+        ("C", "F"),
+        ("C", "D"),
+        ("C", "E"),
+        ("F", "E"),
+        ("E", "D"),
+    }
+
     # Generate random nodes
     random_locations = {chr(65 + i): (random.uniform(0, 100), random.uniform(0, 100)) for i in range(20)}
 
@@ -132,7 +151,6 @@ class NodeData:
         for j in range(i + 1, 20):
             if random.random() < 0.3:  # Adjust the probability for connections
                 random_edges.append((chr(65 + i), chr(65 + j)))
-
 
 '''
   Store the graph as a static variable
