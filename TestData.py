@@ -105,15 +105,15 @@ class NodeData:
         # Append a number to differentiate keys if the alphabet cycles more than once
         if i >= alphabet_length:
             key += str(i // alphabet_length)
-        latitude = random.uniform(43, 47.5)  # Y position
-        longitude = random.uniform(-71, -66.5)  # X position
+        latitude = random.uniform(-71, -67)  # Y position
+        longitude = random.uniform(43, 45)  # X position
         more_city_locations[key] = (longitude, latitude)
 
     keys = list(more_city_locations.keys())  # Get a list of all the keys in the dictionary
 
     for i in range(len(keys)):
         for j in range(i + 1, len(keys)):  # Iterate over other keys, avoiding self-connection
-            if random.random() < 0.7:  # 70% chance to create an edge
+            if random.random() <= 0.3:  # 70% chance to create an edge
                 edge = (keys[i], keys[j])
                 more_city_edges.append(edge)
 
