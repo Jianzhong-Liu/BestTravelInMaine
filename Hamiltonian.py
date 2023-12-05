@@ -122,11 +122,11 @@ random_res = hamiltonian_circuit_timed(random_graph, "A")
 more_graph = GraphData.more_city_graph
 more_graph_res = hamiltonian_circuit_timed(more_graph, "Portland")
 
-g = GraphData.rectangle_circuit_graph
-hamiltonian_circuit_timed(g, "A")
+# g = GraphData.rectangle_circuit_graph
+# hamiltonian_circuit_timed(g, "A")
 
-more_city_graph = GraphData.more_city_graph
-hamiltonian_circuit_timed(more_city_graph, "Portland")
+# more_city_graph = GraphData.more_city_graph
+# hamiltonian_circuit_timed(more_city_graph, "Portland")
 
 
 

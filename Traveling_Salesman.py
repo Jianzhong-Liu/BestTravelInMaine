@@ -83,19 +83,19 @@ def traveling_salesman_timed(g: Graph, start_city: str) -> bool:
 
 
 simple_graph = TestData.GraphData.simple_circuit_graph
-traveling_salesman_timed(simple_graph, "A")
+
 
 main_city_graph = TestData.GraphData.main_city_graph
-traveling_salesman_timed(main_city_graph, "Portland")
+
 
 random_graph = TestData.GraphData.random_graph
-traveling_salesman_timed(random_graph, "A")
+
+rectangle_circuit_graph = TestData.GraphData.rectangle_circuit_graph
 
 more_cities_graph = TestData.GraphData.more_city_graph
-traveling_salesman_timed(more_cities_graph, "Portland")
 
-g = GraphData.rectangle_circuit_graph
-traveling_salesman_timed(g, "A")
-
-more_city_graph = GraphData.more_city_graph
-traveling_salesman_timed(more_city_graph, "Portland")
+# traveling_salesman_timed(simple_graph, "A")
+# traveling_salesman_timed(main_city_graph, "Portland")
+# traveling_salesman_timed(random_graph, "A")
+# traveling_salesman_timed(rectangle_circuit_graph, "A")
+# traveling_salesman_timed(more_cities_graph, "Portland")

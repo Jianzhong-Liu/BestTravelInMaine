@@ -40,17 +40,17 @@ def modified_dijkstra(graph, start_city):
     return tour, total_distance
 
 
-graph = GraphData.simple_circuit_graph
-tour, total_distance = modified_dijkstra(graph, "A")
-print("Tour:", " -> ".join(tour))
-print("Total Distance:", total_distance)
-main_city_graph = GraphData.main_city_graph
-tour, total_distance = modified_dijkstra(main_city_graph, "Portland")
-print("Tour:", " -> ".join(tour))
-print("Total Distance:", total_distance)
-print("++++++")
-random_graph = GraphData.random_graph
-tour, total_distance = modified_dijkstra(random_graph,"A")
-print("Tour:", " -> ".join(tour))
-print("Total Distance:", total_distance)
-print("=====")
+# graph = GraphData.simple_circuit_graph
+# tour, total_distance = modified_dijkstra(graph, "A")
+# print("Tour:", " -> ".join(tour))
+# print("Total Distance:", total_distance)
+# main_city_graph = GraphData.main_city_graph
+# tour, total_distance = modified_dijkstra(main_city_graph, "Portland")
+# print("Tour:", " -> ".join(tour))
+# print("Total Distance:", total_distance)
+# print("++++++")
+# random_graph = GraphData.random_graph
+# tour, total_distance = modified_dijkstra(random_graph,"A")
+# print("Tour:", " -> ".join(tour))
+# print("Total Distance:", total_distance)
+# print("=====")

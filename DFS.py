@@ -80,11 +80,11 @@ def hamiltonian_path(graph, start_node_name):
 
 
 # Example usage:
-graph = GraphData.simple_circuit_graph
-res = hamiltonian_path(graph, "A")
+# graph = GraphData.simple_circuit_graph
+# res = hamiltonian_path(graph, "A")
 
-city_graph = GraphData.main_city_graph
-city_res = hamiltonian_path(city_graph, "Portland")
+# city_graph = GraphData.main_city_graph
+# city_res = hamiltonian_path(city_graph, "Portland")
 
-random_graph = GraphData.random_graph
-random_res = hamiltonian_path(random_graph, "A")
+# random_graph = GraphData.random_graph
+# random_res = hamiltonian_path(random_graph, "A")

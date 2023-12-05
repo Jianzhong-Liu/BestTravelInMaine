@@ -87,11 +87,11 @@ def print_solution(g: Graph, path: list[str]):
 
 
 # Example usage:
-graph = GraphData.simple_circuit_graph
-res = hamiltonian_path_bfs(graph, "A")
+# graph = GraphData.simple_circuit_graph
+# res = hamiltonian_path_bfs(graph, "A")
 
-city_graph = GraphData.main_city_graph
-city_res = hamiltonian_path_bfs(city_graph, "Portland")
+# city_graph = GraphData.main_city_graph
+# city_res = hamiltonian_path_bfs(city_graph, "Portland")
 
-random_graph = GraphData.random_graph
-random_res = hamiltonian_path_bfs(random_graph, "A")
+# random_graph = GraphData.random_graph
+# random_res = hamiltonian_path_bfs(random_graph, "A")
