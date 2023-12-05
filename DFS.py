@@ -1,12 +1,11 @@
 from GraphStructure import Graph, Node
 from TestData import GraphData
-import time
 def depth_first_search(graph, start_node_name):
     visited = set()
 
     def dfs_helper(node):
         visited.add(node)
-        print(node.name)  # Do something with the node, like printing its name
+        print(node.name)  
 
         for neighbor in graph.edges[node]:
             if neighbor not in visited:
@@ -41,7 +40,6 @@ def print_solution(g: Graph, path: list[str]):
     print("Total Distance is", total_distance, "\n")
 
 def hamiltonian_path(graph, start_node_name):
-    start_time = time.time()  # Start the timer
 
     path = []
     visited = set()
@@ -56,7 +54,6 @@ def hamiltonian_path(graph, start_node_name):
             print("Hamiltonian Path:", ' -> '.join(path))
 
             print_solution(graph, path)
-            print("Time taken:", time.time() - start_time)
             return True  # Return True indicating success
 
         for neighbor in graph.edges[node]:
@@ -72,7 +69,6 @@ def hamiltonian_path(graph, start_node_name):
     if start_node:
         if not dfs_helper(start_node):
 
-            print("Time taken:", time.time() - start_time)
             print("No Hamiltonian Path found starting at", start_node_name)
     else:
         

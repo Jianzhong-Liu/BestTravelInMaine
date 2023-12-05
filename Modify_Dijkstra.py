@@ -1,10 +1,8 @@
 from GraphStructure import Graph, Node
 from TestData import GraphData
 import heapq
-import time
 
 def modified_dijkstra(graph, start_city):
-    str_time = time.time()  # Start the timer
     visited = {start_city}
     current_city = start_city
     tour = [start_city]
@@ -35,7 +33,6 @@ def modified_dijkstra(graph, start_city):
     # Add the distance from the last city back to the start
     total_distance += graph.get_distance(graph.nodes[tour[-1]], graph.nodes[start_city])
     tour.append(start_city)
-    print("Time taken:", time.time() - str_time)
 
     return tour, total_distance
 

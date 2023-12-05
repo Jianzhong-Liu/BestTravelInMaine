@@ -1,7 +1,6 @@
 from GraphStructure import Graph, Node
 from TestData import GraphData
 from collections import deque
-import time
 
 def are_neighbors(graph,node1, node_name):
 
@@ -35,7 +34,6 @@ def breadth_first_search(graph, start_node_name):
     
 
 def hamiltonian_path_bfs(graph, start_node_name):
-    start_time = time.time()  # Start the timer
 
     
     queue = deque()
@@ -57,7 +55,6 @@ def hamiltonian_path_bfs(graph, start_node_name):
             path.append(start_node_name)
             print("Hamiltonian Path:", ' -> '.join(path))
             print_solution(graph, path)
-            print("Time taken:", time.time() - start_time)
             return True
 
         # Enqueue all possible paths that can be formed by adding a neighbor
@@ -67,7 +64,6 @@ def hamiltonian_path_bfs(graph, start_node_name):
                 queue.append((neighbor, new_path))
 
     print("No Hamiltonian Path found starting at", start_node_name)
-    print("Time taken:", time.time() - start_time)
     return False
     
 
