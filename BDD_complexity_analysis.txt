@@ -1,0 +1,107 @@
+BFS time complexity and space complexity analyze. 
+### 1. `are_neighbors(graph, node1, node_name)`
+
+- **Time Complexity**: O(1)
+  - This function checks if `node_name` is in the graph and if `node2` (derived from `node_name`) is a neighbor of `node1`. Both operations are dictionary lookups, which are generally O(1) in average case.
+
+- **Space Complexity**: O(1)
+  - No additional space is used proportional to the input size.
+
+### 2. `breadth_first_search(graph, start_node_name)`
+
+- **Time Complexity**: O(V + E)
+  - Where V is the number of vertices and E is the number of edges in the graph. The function explores each vertex and edge once.
+
+- **Space Complexity**: O(V)
+  - The `visited` set and `queue` can grow up to the number of vertices in the worst case.
+
+### 3. `hamiltonian_path_bfs(graph, start_node_name)`
+
+- **Time Complexity**: O(V!)
+  - This is the worst-case scenario for finding a Hamiltonian path in a graph. Since the function explores all possible paths, the number of permutations of vertices i.e., V!  is the worst-case time complexity.
+
+- **Space Complexity**: O(V^2)
+  - Space complexity is high due to storing all possible paths. In the worst case, this could store a large number of paths, each with up to V vertices.
+
+### 4. `print_solution(g, path)`
+
+- **Time Complexity**: O(V)
+  - Iterates over the path once, where the length of the path is at most the number of vertices in the graph.
+
+- **Space Complexity**: O(1)
+  - Constant space, as it only calculates and prints the total distance.
+
+### Summary Report
+
+- The `breadth_first_search` function is efficient for standard BFS operations with linear time complexity relative to the size of the graph.
+- The `hamiltonian_path_bfs` function, used for finding a Hamiltonian path, has a factorial time complexity, making it highly inefficient for large graphs. It is not practical for graphs with a large number of vertices.
+- The `are_neighbors` and `print_solution` functions are efficient with constant time complexities.
+- In terms of space, the BFS function is quite efficient, using only linear space. However, the Hamiltonian path function can be very space-inefficient due to the storage of multiple paths.
+
+In conclusion, while some functions like `breadth_first_search` are suitable for general purposes, the `hamiltonian_path_bfs` function is not practical for large graphs due to its high time and space complexity.
+
+
+DFS time complexity and space complexity analyze. 
+
+### 1. `depth_first_search(graph, start_node_name)`
+
+- **Time Complexity**: O(V + E)
+  - Where V is the number of vertices and E is the number of edges in the graph. The function explores each vertex and edge once in the worst case.
+
+- **Space Complexity**: O(V)
+  - The space complexity is mainly due to the `visited` set and the recursion stack. In the worst case, when the graph is highly connected, the recursion stack can grow as deep as the number of vertices V.
+
+### 2. `hamiltonian_path(graph, start_node_name)`
+
+- **Time Complexity**: O(V!)
+  - This is the worst-case scenario for finding a Hamiltonian path in a graph using DFS. The function essentially generates all permutations of vertices to find such a path. Hence, the time complexity in the worst case is factorial in the number of vertices.
+
+- **Space Complexity**: O(V)
+  - The main contributions to the space complexity are the `visited` set, the `path` list, and the recursion stack. The `visited` set and the `path` list each can grow up to V elements in size. Additionally, the recursion stack's depth can also grow up to V in the worst case (when exploring a path that includes all vertices).
+
+### Summary Report
+
+- The `depth_first_search` function is efficient for standard DFS operations with linear time complexity relative to the size of the graph.
+- The `hamiltonian_path` function, used for finding a Hamiltonian path, has a factorial time complexity, which makes it highly inefficient for large graphs. It is not practical for graphs with a large number of vertices due to its exponential growth in complexity.
+- Both functions have a space complexity linearly proportional to the number of vertices, which is generally manageable unless the graph is exceptionally large.
+
+In conclusion, while `depth_first_search` is suitable for general graph traversal, the `hamiltonian_path` function is computationally expensive and not practical for large graphs due to its high time complexity.
+
+Dijkstra time complexity and space complexity analyze.
+
+### Time Complexity
+
+1. **Outer Loop**:
+   - The outer while loop runs until all nodes are visited. In the worst case, it iterates V times, where V is the number of vertices.
+
+2. **Inner Loop (Priority Queue Operations)**:
+   - Inside the while loop, there's a priority queue. The key operations here are `heappop` and `heappush`.
+   - In the worst case, each edge is examined once, leading to at most E `heappush` operations, where E is the number of edges.
+   - The `heappop` operation is O(log K), where K is the number of elements in the priority queue. In the worst case, this can be O(log E).
+   - Therefore, for all edges, the priority queue operations contribute O(E log E) to the time complexity.
+
+3. **Distance Update**:
+   - For each edge, the algorithm updates the distance. This is done within the inner while loop and contributes O(E).
+
+Combining these, the total time complexity is approximately O(V + E log E), assuming the graph is connected and E is significantly larger than V.
+
+### Space Complexity
+
+1. **Visited Set and Tour List**:
+   - The `visited` set and `tour` list each store up to V elements, contributing O(V).
+
+2. **Distances Dictionary**:
+   - The `distances` dictionary can store up to V elements, contributing another O(V).
+
+3. **Priority Queue**:
+   - The priority queue can store up to E elements in the worst case, contributing O(E).
+
+So, the total space complexity is O(V + E).
+
+### Summary Report
+
+- The modified Dijkstra algorithm presented here is designed to traverse through all nodes of a graph, accumulating the total distance. 
+- Its time complexity is O(V + E log E), which is primarily governed by the priority queue operations for each edge in the graph.
+- The space complexity is O(V + E), mainly due to the storage requirements of the priority queue, visited nodes set, and distance tracking structures.
+- This algorithm is more complex than the standard Dijkstra's algorithm due to the necessity to visit all nodes and track the total distance, making it less efficient for graphs with a very large number of edges.
+- It's suitable for graphs where it's important to visit every node and where the number of edges is not excessively large relative to the number of vertices.
